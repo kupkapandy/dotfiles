@@ -22,7 +22,7 @@ return{
         ensure_installed = {
           "clangd",
           --"asm_lsp",
-          --"glsl_analyzer",
+          "glsl_analyzer",
         },
         automatic_installation = true,
         automatic_enable = false,
@@ -109,7 +109,6 @@ return{
         on_attach = on_attach,
       })
 
-      --[[
       lspconfig["glsl_analyzer"].setup({
         cmd = { "glsl_analyzer" },
         filetypes = {"glsl"},
@@ -118,6 +117,7 @@ return{
         on_attach = on_attach,
       })
 
+      --[[
       lspconfig["asm_lsp"].setup({
         capabilities = capabilities,
         on_attach = on_attach,
