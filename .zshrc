@@ -1,6 +1,7 @@
 alias vim=nvim
 alias n=nvim
 alias v=nvim
+alias neofetch=fastfetch
 
 export EDITOR=nvim
 
