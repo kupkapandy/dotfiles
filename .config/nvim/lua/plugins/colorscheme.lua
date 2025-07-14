@@ -27,7 +27,7 @@ return {
         dark_red = "#792329",
       },
       overrides = {
-        Normal = { bg = "#2e2e32" },
+        Normal = { bg = "#32302f" },
       },
       dim_inactive = false,
       transparent_mode = false,
