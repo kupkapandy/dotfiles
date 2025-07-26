@@ -1673,6 +1673,8 @@ tag(const Arg *arg)
 		focus(NULL);
 		arrange(selmon);
 	}
+
+  view(arg);
 }
 
 void

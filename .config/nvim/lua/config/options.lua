@@ -12,7 +12,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes:1"
 
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 vim.o.background = "dark"
 vim.opt.title = true
 vim.opt.autoindent = true
