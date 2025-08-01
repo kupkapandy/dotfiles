@@ -36,7 +36,7 @@
     #       and the given value is treated as the maximum height
 
     # Position the notification in the top right corner
-    origin = bottom-center
+    origin = top-right
 
     # Offset from the origin
     # NOTE: Dunst from version 1.11 and older use this alternative notation
@@ -222,7 +222,7 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = WhiteSur-dark
+    icon_theme = ""
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 

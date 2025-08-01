@@ -13,17 +13,46 @@
             "right": 4
         }
      },
+     "display": {
+       "separator": "  ~ "
+     },
 
      "modules": [
-       "title",
        "break",
-       "os",
-       "shell",
-       "packages",
-       "uptime",
-       "memory",
-       "disk",
        "break",
-       "colors"
+       {
+         "key": "",
+         "type": "title",
+         "format": "{user-name}",
+         "keyColor": "magenta"
+       },
+       "break",
+       {
+         "type": "os",
+         "key": "",
+         "format": "{pretty-name}",
+         "keyColor": "magenta",
+         "outputcolor": "black"
+       },
+       {
+         "type": "packages",
+         "key": "󰏗",
+         "keyColor": "magenta"
+       },
+       {
+         "type": "shell",
+         "key": "",
+         "keyColor": "magenta"
+       },
+       {
+         "type": "wm",
+         "key": "",
+         "keyColor": "magenta"
+       },
+       "break",
+       {
+         "type": "colors",
+         "symbol": "circle"
+       }
      ]
 }
