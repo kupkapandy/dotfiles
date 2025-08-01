@@ -6,7 +6,7 @@
          "color": {
             "1": "red",
             "2": "green",
-            "3": "green",
+            "3": "magenta",
             "4": "white"
         },
         "padding": {
@@ -18,8 +18,13 @@
      },
 
      "modules": [
-       "break",
-       "break",
+       // pls tell me if there is a better way to center
+       // this, make a pull request or smth :)
+       "break", "break",
+       "break", "break",
+       "break", "break",
+       "break", "break",
+       "break", "break",
        {
          "key": "",
          "type": "title",
@@ -32,7 +37,7 @@
          "key": "",
          "format": "{pretty-name}",
          "keyColor": "magenta",
-         "outputcolor": "black"
+         "outputcolor": "white"
        },
        {
          "type": "packages",
