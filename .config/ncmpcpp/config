@@ -1,0 +1,11 @@
+ncmpcpp_directory = /home/frank/.config/ncmpcpp
+
+lyrics_directory = /home/frank/.lyrics
+
+mpd_host = localhost
+
+mpd_port = 6600
+mpd_password = ""
+
+mpd_music_dir = /home/frank/music
+execute_on_song_change = notify-send "Now Playing" "$(mpc --format '%file%' current)"
