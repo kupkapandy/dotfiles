@@ -22,8 +22,6 @@ return{
         ensure_installed = {
           "clangd",
           "texlab"
-          --"asm_lsp",
-          --"glsl_analyzer",
         },
         automatic_installation = true,
         automatic_enable = false,
@@ -65,15 +63,6 @@ return{
         vim.api.nvim_buf_set_keymap(bufnr, 'n', ',f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
       end,
 
-      vim.filetype.add({
-        extension = {
-          vs = "glsl",
-          fs = "glsl",
-          gs = "glsl",
-          cms = "glsl",
-        },
-      })
-
       vim.diagnostic.config({
         virtual_text = {
           prefix = "",
@@ -114,22 +103,6 @@ return{
         capabilities = capabilities,
         on_attach = on_attach,
       })
-
-      --[[
-      lspconfig["glsl_analyzer"].setup({
-        cmd = { "glsl_analyzer" },
-        filetypes = {"glsl"},
-        root_dir = lspconfig.util.root_pattern(".git"),
-        capabilities = capabilities,
-        on_attach = on_attach,
-      })
-
-      lspconfig["asm_lsp"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        filetypes = {"asm"},
-      })
-      --]]
     end,
   },
   {

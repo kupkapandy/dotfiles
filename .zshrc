@@ -2,12 +2,13 @@ alias vim=nvim
 alias n=nvim
 alias v=nvim
 alias neofetch=fastfetch
+alias download='yt-dlp -x --audio-format mp3 --audio-quality 0'
 
 export EDITOR=nvim
-
 export BAT_THEME=gruvbox-dark
+export ZSH="$HOME/.oh-my-zsh"
+export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 
-# Start tmux if not already running
 if [ -z "$TMUX" ]; then
   tmux
 fi
@@ -15,26 +16,19 @@ fi
 autoload -Uz compinit
 compinit -d ~/.config/zsh/.zcompdump
 
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-fi
+autoload -U colors && colors
 
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="geoffgarside"
+PS1="%{$fg[green]%}%~%{$fg[red]%} %{$reset_color%}$%b "
 
 plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
-
 source $ZSH/oh-my-zsh.sh
 
 set +m
-
-# zsh-autosuggest config
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
