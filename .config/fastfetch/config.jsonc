@@ -24,7 +24,6 @@
        "break", "break",
        "break", "break",
        "break", "break",
-       "break", "break",
        {
          "key": "",
          "type": "title",
@@ -53,6 +52,17 @@
          "type": "wm",
          "key": "",
          "keyColor": "magenta"
+       },
+       {
+         "type": "memory",
+         "key": "",
+         "keyColor": "magenta"
+       },
+       {
+         "type": "disk",
+         "key": "",
+         "keyColor": "magenta",
+          "format": "{1} / {2} ({3})"
        },
        "break",
        {
