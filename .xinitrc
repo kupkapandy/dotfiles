@@ -11,7 +11,6 @@ feh --bg-scale ~/.scripts/32302f.jpg
 
 killall dwm-status.sh
 killall dunst
-killall picom
 ~/.scripts/dwm-status.sh &
 dunst &
 picom &
