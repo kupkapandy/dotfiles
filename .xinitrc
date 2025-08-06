@@ -13,6 +13,5 @@ killall dwm-status.sh
 killall dunst
 ~/.scripts/dwm-status.sh &
 dunst &
-picom &
 
 exec dwm
