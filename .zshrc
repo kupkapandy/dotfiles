@@ -2,6 +2,7 @@ alias vim=nvim
 alias n=nvim
 alias v=nvim
 alias neofetch=fastfetch
+alias rose=fastfetch
 alias download='yt-dlp -x --audio-format mp3 --audio-quality 0'
 
 export EDITOR=nvim
