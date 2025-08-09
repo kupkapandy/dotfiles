@@ -6,8 +6,10 @@ return{
       require("lualine").setup {
         options = {
           theme = 'gruvbox-material',
-          section_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
           component_separators = "|",
+
+          icons_enabled = false,
         },
         sections = {
           lualine_a = {'mode'},

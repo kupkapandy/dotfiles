@@ -10,9 +10,9 @@ export BAT_THEME=gruvbox-dark
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 
-if [ -z "$TMUX" ]; then
-  tmux
-fi
+#if [ -z "$TMUX" ]; then
+#  tmux
+#fi
 
 autoload -Uz compinit
 compinit -d ~/.config/zsh/.zcompdump

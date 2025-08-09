@@ -1,0 +1,612 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+
+vim.opt.clipboard:append("unnamedplus")
+vim.opt.undofile = true
+
+vim.scriptencoding = "utf-8"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
+
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes:1"
+
+vim.o.termguicolors = true
+vim.o.background = "dark"
+vim.opt.title = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.backup = false
+vim.opt.swapfile = false
+vim.opt.showcmd = true
+vim.opt.showmode = true
+vim.opt.cmdheight = 1
+vim.opt.expandtab = true
+vim.opt.scrolloff = 10
+vim.opt.inccommand = "split"
+vim.opt.ignorecase = true
+vim.opt.smarttab = true
+vim.opt.breakindent = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.wrap = false
+vim.opt.backspace = { "start", "eol", "indent" }
+vim.opt.path:append({ "**" })
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitkeep = "cursor"
+vim.opt.formatoptions:append({ "r" })
+vim.o.fillchars = "eob: "
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },
+  },
+  checker = { enabled = false },
+})
+-- Change some colors in telescope to make it look better :-)
+vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { bg = NONE, fg = "#504945"})
+vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { bg = NONE, fg = "#504945"})
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = NONE, fg = "#504945"})
+vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { bg = NONE, fg = "#b8bb26"})
+vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { bg = NONE, fg = "#b8bb26"})
+vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = NONE, fg = "#b8bb26"})
+
+-- Change the background color of diagnostic sign column symbols and bg
+vim.api.nvim_set_hl(0, "DiagnosticSignError", {bg = NONE, fg = "#fb4934"})
+vim.api.nvim_set_hl(0, "DiagnosticSignWarn", {bg = NONE, fg = "#fabd2f"})
+vim.api.nvim_set_hl(0, "DiagnosticSignInfo", {bg = NONE, fg = "#83a598"})
+vim.api.nvim_set_hl(0, "DiagnosticSignHint", {bg = NONE, fg = "#8ec07c"})
+vim.api.nvim_set_hl(0, 'SignColumn', {fg = NONE, bg = NONE})
+return {
+  {
+    "williamboman/mason.nvim",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+    },
+    config = function()
+      local mason = require("mason")
+      local mason_lspconfig = require("mason-lspconfig")
+
+      mason.setup({
+        ui = {
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+          },
+        },
+      })
+
+      mason_lspconfig.setup({
+        ensure_installed = {
+          "clangd",
+        },
+        automatic_installation = true,
+        automatic_enable = false,
+      })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+    },
+    config = function()
+      local lspconfig = require("lspconfig")
+      local cmp_nvim_lsp = require("cmp_nvim_lsp")
+      local capabilities = cmp_nvim_lsp.default_capabilities()
+
+      local on_attach = function(client, bufnr)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+        local opts = { noremap = true, silent = true }
+
+        -- LSP mappings
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "i", ",s", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", ",wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", ",wr", "<cmd>lua vim7717m.lsp.buf.remove_workspace_folder()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", ",wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", ",D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", ",rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", ",qf", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+        vim.api.nvim_buf_set_keymap(bufnr, "n", ",f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
+      end
+
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = "",
+          spacing = 0,
+          format = function(diagnostic)
+            return diagnostic.message
+          end,
+        },
+        float = {
+          source = "always",
+          border = "rounded",
+        },
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      })
+
+      lspconfig["clangd"].setup({
+        cmd = {
+          "/usr/lib/llvm/20/bin/clangd",
+          "--background-index",
+          "--pch-storage=memory",
+          "--all-scopes-completion",
+          "--pretty",
+          "--header-insertion=never",
+          "-j=4",
+          "--header-insertion-decorators",
+          "--function-arg-placeholders=0",
+          "--completion-style=detailed",
+        },
+        filetypes = { "h", "c", "cpp" },
+        root_dir = require("lspconfig").util.root_pattern("compile_commands.json", ".git", "Makefile"),
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lsp",
+      {
+        "garymjr/nvim-snippets",
+        opts = {
+          create_cmp_source = true, -- Enable nvim-cmp source
+          friendly_snippets = false, -- Disable if not using friendly-snippets
+        },
+      },
+    },
+    config = function()
+      local cmp = require("cmp")
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            vim.snippet.expand(args.body) -- Native Neovim snippet expansion
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif vim.snippet.active({ direction = 1 }) then
+              vim.schedule(function() vim.snippet.jump(1) end)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif vim.snippet.active({ direction = -1 }) then
+              vim.schedule(function() vim.snippet.jump(-1) end)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "snippets" },
+          { name = "path" },
+        }, {
+          { name = "buffer" },
+        }),
+      })
+    end,
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {
+      hint_prefix = "",
+      floating_window = false,
+      bind = true,
+    },
+    config = function(_, opts)
+      require("lsp_signature").setup(opts)
+    end,
+  },
+}
+return {
+	"christoomey/vim-tmux-navigator",
+	cmd = {
+		"TmuxNavigateLeft",
+		"TmuxNavigateDown",
+		"TmuxNavigateUp",
+		"TmuxNavigateRight",
+		"TmuxNavigatePrevious",
+	},
+	keys = {
+		{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+		{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+		{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+		{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+		{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+	},
+}
+return {
+  {
+    "lervag/vimtex",
+    lazy = false,     -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "zathura"
+      -- vim.g.vimtex_view_forward_search_on_start = 0
+    end
+  }
+}
+return {
+  {
+    'nvim-telescope/telescope.nvim',
+
+    keys = {
+      {
+        ';f',
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.find_files({
+            hidden = true,
+          })
+        end,
+      },
+      {
+        ';r',
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.live_grep()
+        end,
+      },
+    },
+
+    config = function(_, opts)
+      require("telescope").setup({
+        defaults = {
+          layout_config = {
+            prompt_position = "top",
+            preview_width = 0.6,
+          },
+          sorting_strategy = "ascending",
+          file_ignore_patterns = {
+            "%.git/",
+            "%.cache/",
+            "lib/",
+            "%.o",
+            "%.fls",
+            "%.aux",
+            "%.toc",
+            "%.fdb_latexmk",
+            "%.synctex.gz",
+          },
+        }
+      })
+    end,
+  }
+}
+return {
+  "ellisonleao/gruvbox.nvim",
+  priority = 1000,
+  config = function()
+    require("gruvbox").setup({
+      terminal_colors = true,
+      undercurl = true,
+      underline = true,
+      bold = true,
+      italic = {
+        strings = true,
+        emphasis = true,
+        comments = true,
+        operators = false,
+        folds = true,
+      },
+      strikethrough = true,
+      invert_selection = false,
+      invert_signs = false,
+      invert_tabline = false,
+      invert_intend_guides = false,
+      inverse = true, -- invert background for search, diffs, statuslines and errors
+      contrast = "", -- can be "hard", "soft" or empty string
+      palette_overrides = {
+        dark_aqua = "#3e4934",
+        dark_green = "#5a633a",
+        dark_red = "#792329",
+      },
+      overrides = {
+        Normal = { bg = "#32302f" },
+      },
+      dim_inactive = false,
+      transparent_mode = false,
+    })
+    vim.cmd("colorscheme gruvbox")
+  end,
+}
+return {
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true,
+  },
+  {
+    'ntpeters/vim-better-whitespace',
+  },
+  {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require("colorizer").setup({
+        '*',
+      })
+    end,
+  },
+}
+return{
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("lualine").setup {
+        options = {
+          theme = 'gruvbox-material',
+          section_separators = { left = '', right = '' },
+          component_separators = "|",
+        },
+        sections = {
+          lualine_a = {'mode'},
+          lualine_b = {'branch', 'diff', 'diagnostics'},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {'filename'},
+        },
+      }
+    end,
+  },
+}
+return {
+	{
+		"nvim-treesitter/nvim-treesitter",
+		config = function()
+			local treesitter = require("nvim-treesitter.configs")
+			treesitter.setup({
+				ensure_installed = {
+					"c",
+					"cpp",
+          "make",
+          --"asm",
+          --"glsl",
+				},
+				auto_install = false,
+				query_linter = {
+					enable = true,
+					use_virtual_text = true,
+					lint_events = { "BufWrite", "CursorHold" },
+				},
+				highlight = {
+					enable = true,
+				},
+        indent = {
+          enable = true,
+          disable = { "asm", },
+        }
+			})
+		end,
+	},
+}
+{
+  "cmp-buffer": { "branch": "main", "commit": "b74fab3656eea9de20a9b8116afa3cfc4ec09657" },
+  "cmp-cmdline": { "branch": "main", "commit": "d126061b624e0af6c3a556428712dd4d4194ec6d" },
+  "cmp-nvim-lsp": { "branch": "main", "commit": "a8912b88ce488f411177fc8aed358b04dc246d7b" },
+  "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
+  "gruvbox.nvim": { "branch": "main", "commit": "58a2cda2e953a99e2f87c12b7fb4602da4e0709c" },
+  "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
+  "lsp_signature.nvim": { "branch": "master", "commit": "62cadce83aaceed677ffe7a2d6a57141af7131ea" },
+  "lualine.nvim": { "branch": "master", "commit": "a94fc68960665e54408fe37dcf573193c4ce82c9" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "7f0bf635082bb9b7d2b37766054526a6ccafdb85" },
+  "mason.nvim": { "branch": "main", "commit": "7dc4facca9702f95353d5a1f87daf23d78e31c2a" },
+  "nvim-autopairs": { "branch": "master", "commit": "23320e75953ac82e559c610bec5a90d9c6dfa743" },
+  "nvim-cmp": { "branch": "main", "commit": "b5311ab3ed9c846b585c0c15b7559be131ec4be9" },
+  "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
+  "nvim-lspconfig": { "branch": "master", "commit": "9141be4c1332afc83bdf1b0278dbb030f75ff8e3" },
+  "nvim-snippets": { "branch": "main", "commit": "56b4052f71220144689caaa2e5b66222ba5661eb" },
+  "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
+  "nvim-web-devicons": { "branch": "master", "commit": "3362099de3368aa620a8105b19ed04c2053e38c0" },
+  "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
+  "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
+  "vim-better-whitespace": { "branch": "master", "commit": "de99b55a6fe8c96a69f9376f16b1d5d627a56e81" },
+  "vim-tmux-navigator": { "branch": "master", "commit": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a" },
+  "vimtex": { "branch": "master", "commit": "6fabe8b7b5e83f753eb930036b1d941b2f7d3d4d" }
+}
+require("config.options")
+require("config.lazy")
+require("config.highlights")
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⢭⠟⠯⢍⡈⠿⣰⡹⡃⣀⠀⠀⠀⠠⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⠆⠉⠘⢠⢛⡳⠞⣝⡑⠌⢧⡀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠂⠀⠀⠀⠌⡐⠰⣈⢃⠈⠆⠡⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠈⡄⠀⠄⠘⠨⢁⠠⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢄⢒⠘⢆⠀⠠⠁⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢈⠓⢦⠁⠀⡐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⣧⣴⣤⣴⣤⣅⡀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⠰⢉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⢘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢨⠐⠡⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⢜⣫⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣆⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⠣⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠸⢟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣤⡄⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠴⣼⠶⢌⠒⢀⠃⣷⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠠⣷⢿⡀⠀⠀⠀⠀⠈⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⢭⡀⠴⠀⠀⠀⠘⣿⣿⣿⣿⣿⡿⠿⠿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⡄⠀⠀⢠⣿⣷⠂⠀⠀⠀⠀
+⢀⡀⠀⠀⠀⠀⢹⣿⠁⠀⠀⠀⠀⢀⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣮⣗⠢⢀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣇⠀⡀⢀⡀⢉⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣇⠀⠀⠀⠉⣿⠃⠀⠀⢀⡀
+⠸⣿⣦⡄⠀⠀⠘⢿⡡⠀⠀⠀⢀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠺⣿⡟⠆⠀⠀⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣻⣿⣿⡂⠀⠉⣻⠧⠀⠀⠀⠀⣿
+⠀⠘⢿⣿⡛⠀⠀⠀⠛⣶⠃⢰⣾⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡟⠀⠀⠀⠀⠸⣿⣿⣿⣿⠃⠘⢿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⣿⣿⣿⣿⣾⣿⡻⠀⠀⠀⠀⣸⡇
+⠀⠀⠈⠛⡡⢂⣄⠢⠅⠀⠉⢆⣿⡿⡷⠀⠀⠀⠠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⡏⠀⠀⠀⠀⠀⣽⣿⣿⣿⣄⠀⠀⢻⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣶⣄⣠⣾⣿⣿⣿⡇⠙⣿⣦⣀⣀⣾⠇⠀
+⠀⠀⠀⠀⠡⠉⠐⠶⡀⠀⠀⠀⠈⠑⠀⠀⠀⠀⣰⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡏⠀⠀⠀⠀⠀⣤⠿⢿⣿⣿⣿⡆⠀⠀⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⡿⢿⡟⠐⠀⢘⣿⣿⣿⠋⠀⠀
+⢸⢿⣿⣿⣿⣶⣤⣴⣶⡆⡀⠀⠀⠀⠀⠀⢀⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠙⣿⣏⠀⠀⢸⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠿⣿⣿⣿⡦⠀⠀⠀⠀⠸⠛⠛⠳⡀⠀
+⠈⠷⠛⠾⣽⢻⠛⣍⠛⣴⡀⠀⠀⠀⠀⣠⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡏⠀⠀⢸⣿⣿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢻⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠙⠀
+⠀⠀⠀⠀⠀⠀⠈⠀⠙⠴⢋⡧⠐⣠⣾⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡄⠀⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⡅⠀⣤⡀⠀⠀⠀⠈⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠚⣿⣿⡟⢛⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣧⠀⢏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢣⣄⣿⣿⣗⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣯⠀⠀⢸⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠘⣽⣶⣾⣶⡄⠀⠀⠀⠀⠀⠀⣸⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠋⣨⣿⣿⡿⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠎⠱⢀⢠⣼⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⠀⠀⢿⣿⣿⣿⠀⠀⠀⠀⢰⠀⠀⣾⣿⡿⠧⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀⢹⣿⣿⡏⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠹⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠀⠀⠈⠿⣿⣧⠀⠀⠀⢠⣾⠀⣰⣼⣿⠏⠀⠉⠓⠂⢀⡾⣦⢄⡠⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣷⣴⣾⣿⣿⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⣿⣿⣿⣿⣿⣶⣢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠟⠃⠀⣠⣾⣿⣀⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⢸⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⣀⣾⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠈⢻⢿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢄⡰⣜⣿⣿⣿⣿⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣌⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢫⠿⣿⣿⣿⣿⣿⣟⠻⡷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢹⣿⣿⠛⢓⡀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⢰⣾⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⠙⠿⡏⠀⢽⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⡀⠀⠄⣦⡰⣤⣶⣿⣿⣿⣿⣿⣷⡼⣧⣜⣸⡄⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⠾⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⢲⡔⠀⠈⠚⠻⡿⢲⠁⠀⠀⠠⠀⠀⠐⢢⣐⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⣷⣿⣦⣴⣃⠀⠀⠀⠀⠀⠀⠀⠀⢀⡰⠦⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠧⠀⠀⠀⠀⠀⠃⠀⠀⠀⠀⠀⠀⠀⠹⡆⠀⢨⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⢿⡿⣧⣓⡀⠀⢀⣀⠠⠐⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠁⠀⠚⠛⠛⠛⠛⠛⠋⠛⠛⠛⠋⠙⠛⠛⠛⠘⠛⠛⠛⠋⠃⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+{
+  "Basic Template": {
+    "prefix": ["template"],
+    "body": [
+      "\\documentclass[a4paper]{report}",
+      "\\begin{document}",
+      "${1}",
+      "\\end{document}",
+      "$0"
+    ]
+  },
+
+  "New Environment": {
+    "prefix": ["begin"],
+    "body": [
+      "\\begin{$1}",
+      "$0",
+      "\\end{$1}"
+    ]
+  },
+
+  "Enumarate Environment": {
+    "prefix": ["enum"],
+    "body": [
+      "\\begin{enumerate}",
+      "\\item $0",
+      "\\end{enumerate}"
+    ]
+  },
+
+  "Implies": {
+    "prefix": ["=>"],
+    "body": [
+      "\\implies"
+    ]
+  },
+
+  "Implied by": {
+    "prefix": ["<="],
+    "body": [
+      "\\impliedby"
+    ]
+  },
+
+  "Fraction": {
+    "prefix": ["\\"],
+    "body": [
+      "\\frac{$1}{$2}$0"
+    ]
+  },
+
+  "Ceil": {
+    "prefix": ["ceil"],
+    "body": [
+      "\\left\\lceil $1 \\right\\rceil $0"
+    ]
+  },
+
+  "Floor": {
+    "prefix": ["floor"],
+    "body": [
+      "\\left\\lceil $1 \\right\\rceil $0"
+    ]
+  },
+
+  "()": {
+    "prefix": ["lr("],
+    "body": [
+      "\\left($1\\right) $0"
+    ]
+  },
+
+  "[]": {
+    "prefix": ["lr["],
+    "body": [
+      "\\left[$1\\right] $0"
+    ]
+  },
+
+  "{}": {
+    "prefix": ["lr{"],
+    "body": [
+      "\\left{$1\\right} $0"
+    ]
+  },
+
+  "||": {
+    "prefix": ["lr|"],
+    "body": [
+      "\\left|$1\\right| $0"
+    ]
+  },
+
+  "Leftangle Rightangle": {
+    "prefix": ["lra"],
+    "body": [
+      "\\left<\\right>"
+    ]
+  },
+
+  "$": {
+    "prefix": ["$"],
+    "body": [
+      "\\$$0\\$"
+    ]
+  },
+
+  "$$": {
+    "prefix": ["$$"],
+    "body": [
+      "\\$\\$$0\\$\\$"
+    ]
+  }
+}

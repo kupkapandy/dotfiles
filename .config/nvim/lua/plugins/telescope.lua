@@ -9,6 +9,7 @@ return {
           local builtin = require("telescope.builtin")
           builtin.find_files({
             hidden = true,
+            disable_devicons = true,
           })
         end,
       },
