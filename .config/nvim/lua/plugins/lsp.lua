@@ -82,7 +82,7 @@ return{
 
       lspconfig["clangd"].setup({
         cmd = {
-          "/usr/bin/clangd",
+          "/usr/lib/llvm/20/bin/clangd",
           "--background-index",
           "--pch-storage=memory",
           "--all-scopes-completion",
