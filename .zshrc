@@ -5,6 +5,7 @@ alias reboot='loginctl reboot'
 
 export EDITOR=nvim
 export BAT_THEME=gruvbox-dark
+export XDG_SESSION_TYPE="x11"
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 
