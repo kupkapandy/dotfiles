@@ -1,24 +1,23 @@
 alias vim=nvim
-alias n=nvim
 alias v=nvim
-alias neofetch=fastfetch
-alias rose=fastfetch
-alias download='yt-dlp -x --audio-format mp3 --audio-quality 0'
+alias shutdown='loginctl poweroff'
+alias reboot='loginctl reboot'
 
 export EDITOR=nvim
 export BAT_THEME=gruvbox-dark
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 
-#if [ -z "$TMUX" ]; then
-#  tmux
-#fi
+if [ -n "$DISPLAY" ]; then
+  if [ -z "$TMUX" ]; then
+    tmux
+  fi
+fi
 
 autoload -Uz compinit
 compinit -d ~/.config/zsh/.zcompdump
 
 autoload -U colors && colors
-
 
 PS1="%{$fg[green]%}%~%{$fg[red]%} %{$reset_color%}$%b "
 
