@@ -2,7 +2,7 @@
 
 unset XCURSOR_THEME
 
-xrandr --output DP-0 --mode 2560x1440 --rate 100 --primary --output HDMI1 --mode 1920x1080 --rate 75 --left-of DP-0
+xrandr --output DP-0 --mode 2560x1440 --rate 100 --primary --output HDMI1 --mode 1920x1080 --rate 75 --right-of DP-0
 xset s off
 xset -dpms
 xset s noblank
