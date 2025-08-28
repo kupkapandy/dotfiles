@@ -1,7 +1,5 @@
 alias vim=nvim
 alias v=nvim
-alias shutdown='loginctl poweroff'
-alias reboot='loginctl reboot'
 
 export EDITOR=nvim
 export BAT_THEME=gruvbox-dark

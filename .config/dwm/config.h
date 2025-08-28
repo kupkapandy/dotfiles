@@ -13,8 +13,8 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
-static const char *fonts[]          = { "Terminus:size=10" };
-static const char dmenufont[]       = "Terminus:size=10";
+static const char *fonts[]          = { "Bm437 IBM VGA 8x16:pixelsize=16:antialias=false:autohint=true" };
+static const char dmenufont[]       = "Bm437 IBM VGA 8x16:pixelsize=16:antialias=false:autohint=true";
 
 /* colors */
 static const char col_bg1[]         = "#282828";
@@ -45,7 +45,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5"};
+static const char *tags[] = { "one", "two", "three", "four"};
 
 static Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
@@ -132,7 +132,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
 
   { 0, XF86XK_AudioMute,        spawn, {.v = mute_vol } },
   { 0, XF86XK_AudioLowerVolume, spawn, {.v = down_vol } },
