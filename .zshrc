@@ -14,11 +14,12 @@ if [ -n "$DISPLAY" ]; then
 fi
 
 autoload -Uz compinit
-compinit -d ~/.config/zsh/.zcompdump
-
 autoload -U colors && colors
 
-PS1="%{$fg[green]%}%~%{$fg[red]%} %{$reset_color%}$%b "
+compinit -d ~/.config/zsh/.zcompdump
+
+# fish prompt go brrr
+PS1="[$fg[blue]%m$fg[white]@$fg[yellow]%n$fg[white]]%{$fg[red]%}[%1~$fg[white]] \$ "
 
 plugins=(
   git

@@ -4,7 +4,7 @@ set default-fg "#ebdbb2"
 set statusbar-bg "#32302f"
 set statusbar-fg "#ebdbb2"
 
-set recolor "true"
+set recolor "false"
 set recolor-lightcolor "#32302f"
 set recolor-darkcolor "#ebdbb2"
 set recolor-reverse-video "true"
