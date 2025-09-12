@@ -12,7 +12,7 @@ killall dwm-status.sh
 ./.scripts/dwm-status.sh &
 
 killall feh
-feh --bg-scale ~/.scripts/32302f.jpg
+feh --bg-scale ~/.scripts/a_group_of_white_spheres_with_rings.png ~/.scripts/Ai_Hayasaka_Holding_The_C_Programming_Language.png
 
 
 exec dwm

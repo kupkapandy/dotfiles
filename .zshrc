@@ -3,7 +3,8 @@ alias v=nvim
 
 export EDITOR=nvim
 export BAT_THEME=gruvbox-dark
-export XDG_SESSION_TYPE="x11"
+export MANPAGER='nvim +Man!'
+export TERM="screen-256color"
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 
@@ -14,12 +15,10 @@ if [ -n "$DISPLAY" ]; then
 fi
 
 autoload -Uz compinit
-autoload -U colors && colors
 
 compinit -d ~/.config/zsh/.zcompdump
 
-# fish prompt go brrr
-PS1="[$fg[blue]%m$fg[white]@$fg[yellow]%n$fg[white]]%{$fg[red]%}[%1~$fg[white]] \$ "
+ZSH_THEME="geoffgarside"
 
 plugins=(
   git

@@ -12,8 +12,6 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes:1"
 
-vim.o.termguicolors = true
-vim.o.background = "dark"
 vim.opt.title = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
