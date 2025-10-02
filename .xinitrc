@@ -8,10 +8,13 @@ xset -dpms
 xset s noblank
 xrdb -merge ~/.Xresources
 
+setxkbmap pl
+xinput set-prop 13 "libinput Accel Profile Enabled" 0 1 0
+
 killall dwm-status.sh
 ./.scripts/dwm-status.sh &
 
 killall feh
-feh --bg-scale ~/.scripts/a_group_of_white_spheres_with_rings.png
+feh --bg-scale ~/.scripts/ebdbb2.png
 
 exec dwm

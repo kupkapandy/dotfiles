@@ -6,6 +6,6 @@ set statusbar-fg "#657b83"
 
 set recolor "true"
 set recolor-lightcolor "#fdf6e3"
-set recolor-darkcolor "#073642"
+set recolor-darkcolor "#000000"
 set recolor-reverse-video "true"
 set recolor-keephue "true"

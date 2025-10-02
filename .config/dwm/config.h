@@ -3,7 +3,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
@@ -42,12 +42,12 @@ static const char col_dark_red[]    = "#cc241d";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_fg3, col_bg4 },
-	[SchemeSel]  = { col_bg1, col_fg3,  col_gray1  },
+	[SchemeNorm] = { col_gray3, col_fg1, col_fg3 },
+	[SchemeSel]  = { col_bg1, col_fg1,  col_fg2  },
 };
 
 /* tagging */
-static const char *tags[] = { "one", "two", "three", "four"};
+static const char *tags[] = { "1", "2", "3", "4"};
 
 static Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
@@ -80,7 +80,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_fg3, "-nf", col_bg1, "-sb", col_yellow, "-sf", col_bg1, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_fg1, "-nf", col_bg1, "-sb", col_yellow, "-sf", col_bg1, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
 static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };
