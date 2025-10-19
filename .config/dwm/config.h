@@ -3,7 +3,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
@@ -13,8 +13,8 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 
-static const char *fonts[]          = { "Terminus:pixelsize=16:antialias=false:autohint=true" };
-static const char dmenufont[]       = "Terminus:pixelsize=16:antialias=false:autohint=true";
+static const char *fonts[]          = { "Bm437 IBM VGA 8x16:pixelsize=16:antialias=false:autohint=true" };
+static const char dmenufont[]       = "Bm437 IBM VGA 8x16:pixelsize=16:antialias=false:autohint=true";
 
 /* colors */
 static const char col_bg1[]         = "#282828";
@@ -40,14 +40,14 @@ static const char col_orange[]      = "#fe8019";
 static const char col_red[]         = "#fb4934";
 static const char col_dark_red[]    = "#cc241d";
 
-static const char *colors[][3]      = {
+static const char *colors[][3] = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_fg1, col_fg3 },
-	[SchemeSel]  = { col_bg1, col_fg1,  col_fg2  },
+	[SchemeNorm] = {"#45403d", "#0d0c0c", "#555555"},
+	[SchemeSel] = {"#c5c9c5", "#0d0c0c", "#a292a3"},
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4"};
+static const char *tags[] = { "one", "two", "three", "four"};
 
 static Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
@@ -80,8 +80,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_fg1, "-nf", col_bg1, "-sb", col_yellow, "-sf", col_bg1, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", "#0d0c0c", "-nf", "#DDDDDD", "-sb", "#c4b28a", "-sf", "#0d0c0c", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
 static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };
 static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };

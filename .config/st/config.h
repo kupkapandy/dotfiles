@@ -6,8 +6,8 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 
-/* static char *font = "Bm437 IBM VGA 8x16:pixelsize=16:antialias=false:autohint=true"; */
-static char *font = "Terminus:pixelsize=16:antialias=false:autohint=true";
+static char *font = "Bm437 IBM VGA 8x16:pixelsize=16:antialias=false:autohint=true";
+/* static char *font = "Terminus:style=Regular:pixelsize=17:antialias=false:autohint=true"; */
 static int borderpx = 10;
 
 /*
@@ -99,34 +99,36 @@ unsigned int tabspaces = 8;
 float alpha = 1;
 
 /* Terminal colors (16 first used in escape sequence) */
+
 static const char *colorname[] = {
-	/* 8 normal colors */
-	"#1d2021",
-	"#fb4934",
-	"#b8bb26",
-	"#fabd2f",
-	"#83a598",
-	"#d3869b",
-	"#8ec07c",
-	"#d5c4a1",
+  /* 8 normal colors */
+  "#000000", // black
+  "#c34043", // red
+  "#76946a", // green
+  "#c0a36e", // yellow
+  "#7e9cd8", // blue
+  "#957fb8", // magenta
+  "#6a9589", // cyan
+  "#DDDDDD", // white (light gray)
 
-	/* 8 bright colors */
-	"#504945",
-	"#fb4934",
-	"#b8bb26",
-	"#fabd2f",
-	"#83a598",
-	"#d3869b",
-	"#8ec07c",
-	"#ebdbb2",
+  /* 8 bright colors */
+  "#424149", // bright black (gray)
+  "#e82424", // bright red
+  "#98bb6c", // bright green
+  "#e6c384", // bright yellow
+  "#7fb4ca", // bright blue
+  "#938aa9", // bright magenta
+  "#7aa89f", // bright cyan
+  "#DDDDDD", // bright white
 
-	[255] = 0,
+  [255] = 0,
 
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#ebdbb2",
-	"#32302f",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+  /* more colors can be added after 255 to use with DefaultXX */
+
+  "#cccccc",
+  "#555555",
+  "#DDDDDD", // foreground
+  "#000000", // background
 };
 
 
@@ -134,8 +136,8 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 256;
-unsigned int defaultbg = 257;
+unsigned int defaultfg = 258;
+unsigned int defaultbg = 259;
 unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
 

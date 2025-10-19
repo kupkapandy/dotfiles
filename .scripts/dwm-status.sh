@@ -1,5 +1,7 @@
 #!/bin/bash
 
+trap "exit" TERM
+
 getVolume() {
   if pactl get-sink-mute @DEFAULT_SINK@ | grep -q "yes"; then
     echo "Muted"

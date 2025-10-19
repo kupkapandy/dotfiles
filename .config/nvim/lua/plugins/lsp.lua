@@ -80,15 +80,15 @@ return{
         update_in_insert = false,
       })
 
-      lspconfig["clangd"].setup({
+      vim.lsp.config['clangd'] = {
         cmd = {
-          "/usr/bin/clangd",
+          "/usr/lib/llvm/21/bin/clangd",
           "--background-index",
           "--pch-storage=memory",
           "--all-scopes-completion",
           "--pretty",
           "--header-insertion=never",
-          "-j=4",
+          "-j=6",
           "--header-insertion-decorators",
           "--function-arg-placeholders=0",
           "--completion-style=detailed",
@@ -97,12 +97,12 @@ return{
         root_dir = require('lspconfig').util.root_pattern("compile_commands.json", ".git", "Makefile"),
         capabilities = capabilities,
         on_attach = on_attach,
-      })
+      }
 
-      lspconfig["texlab"].setup({
+      vim.lsp.config['texlab'] = {
         capabilities = capabilities,
         on_attach = on_attach,
-      })
+      }
     end,
   },
   {
