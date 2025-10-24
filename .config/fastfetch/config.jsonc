@@ -7,7 +7,7 @@
       "2": "magenta"
     },
     "padding": {
-      "top": 2,
+      "top": 1,
       "left": 4,
       "right": 4
     }
@@ -20,6 +20,7 @@
   },
 
   "modules": [
+    "break",
     "break",
     {
       "key" : "Distro   ",
@@ -57,19 +58,6 @@
       "format": "{1} / {2}"
     },
     "break",
-       {
-         "key" : "CPU      ",
-         "type": "cpu",
-         "keyColor": "magenta",
-         "format": "{1}"
-       },
-       {
-         "key" : "GPU      ",
-         "type": "gpu",
-         "keyColor": "magenta",
-         "format": "{2}",
-         "hideType": "integrated"
-       },
-       "break"
+    "break",
   ]
 }

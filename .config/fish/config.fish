@@ -65,6 +65,9 @@ if test -n "$DISPLAY"
     end
 end
 
+if test -z "$DISPLAY"
+  clear
+end
 
 function fish_greeting; end
 export PATH="$HOME/.cargo/bin:$PATH"
