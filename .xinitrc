@@ -14,7 +14,4 @@ xinput set-prop 13 "libinput Accel Profile Enabled" 0 1 0
 killall dwm-status.sh
 ./.scripts/dwm-status.sh &
 
-killall feh
-feh --bg-scale ~/.scripts/32302f.jpg.png
-
-exec dwm &> /dev/random
+exec dwm
