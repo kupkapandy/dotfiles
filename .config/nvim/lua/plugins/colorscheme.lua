@@ -2,6 +2,7 @@ return {
   {
     "rebelot/kanagawa.nvim",
     priority = 1000,
+    enabled = false,
     config = function()
       require("kanagawa").setup({
         compile = false,
@@ -56,5 +57,56 @@ return {
       })
       vim.cmd("colorscheme kanagawa-dragon")
     end
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
+    enabled = true,
+    config = function()
+      require("gruvbox").setup({
+        terminal_colors = true,
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        invert_intend_guides = false,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = "hard", -- can be "hard", "soft" or empty string
+        palette_overrides = {
+          dark_aqua = "#3e4934",
+          dark_green = "#5a633a",
+          dark_red = "#792329",
+        },
+        overrides = {
+          Normal = { bg = "#32302f" },
+        },
+        dim_inactive = false,
+        transparent_mode = false,
+      })
+      vim.cmd("colorscheme gruvbox")
+    end,
+  },
+  {
+    "lifepillar/vim-solarized8",
+    branch = "neovim",
+    priority = 1000,
+    enabled = false,
+    config = function()
+      vim.o.termguicolors = true
+      vim.opt.background = 'light'
+      vim.g.solarized_visibility = 'low'
+
+      vim.cmd("colorscheme solarized8")
+    end,
   },
 }

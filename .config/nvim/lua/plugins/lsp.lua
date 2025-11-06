@@ -82,10 +82,10 @@ return{
 
       vim.lsp.config('clangd', {
         cmd = {
-          "/usr/bin/clangd",
+          "/usr/lib/llvm/20/bin/clangd",
           "--background-index",
           "--pch-storage=memory",
-          ""--all-scopes-completion",
+          "--all-scopes-completion",
           "--pretty",
           "--header-insertion=never",
           "-j=6",
