@@ -2,9 +2,9 @@
 vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { bg = NONE, fg = "#504945"})
 vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { bg = NONE, fg = "#504945"})
 vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = NONE, fg = "#504945"})
-vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { bg = NONE, fg = "#859900"})
-vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { bg = NONE, fg = "#859900"})
-vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = NONE, fg = "#859900"})
+vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { bg = NONE, fg = "#b8bb2d"})
+vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { bg = NONE, fg = "#b8bb2d"})
+vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = NONE, fg = "#b8bb2d"})
 
 --[[
 vim.api.nvim_set_hl(0, "DiagnosticSignError", {bg = NONE, fg = "#fb4934"})

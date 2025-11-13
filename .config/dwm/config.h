@@ -42,8 +42,8 @@ static const char col_dark_red[]    = "#cc241d";
 
 static const char *colors[][3] = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = {"#45403d", "#0d0c0c", "#555555"},
-	[SchemeSel] = {"#c5c9c5", "#0d0c0c", "#a292a3"},
+	[SchemeNorm] = {col_gray3, col_bg2, col_bg4},
+	[SchemeSel] = {col_fg1, col_bg2, col_gray2},
 };
 
 /* tagging */
@@ -80,8 +80,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", "#0d0c0c", "-nf", "#DDDDDD", "-sb", "#c4b28a", "-sf", "#0d0c0c", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg2, "-nf", col_fg1, "-sb", col_yellow, "-sf", col_bg2, NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
 static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };
 static const char *mute_vol[] = { "pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle", NULL };

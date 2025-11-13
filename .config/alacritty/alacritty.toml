@@ -27,7 +27,7 @@ yellow = "#fabd2f"
 
 [colors.primary]
 background = "#32302f"
-bright_foreground = "#32302f"
+bright_foreground = "#ebdbb2"
 foreground = "#ebdbb2"
 
 [font]
@@ -109,3 +109,5 @@ mods = "Control|Shift"
 [window.padding]
 x = 10
 y = 10
+
+
