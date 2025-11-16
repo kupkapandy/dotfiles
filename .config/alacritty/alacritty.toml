@@ -1,38 +1,33 @@
 [colors]
 draw_bold_text_with_bright_colors = true
 
-[colors.bright]
-black = "#7C6F64"
-blue = "#7e9cd8"
-cyan = "#8ec07c"
-green = "#b8bb26"
-magenta = "#d3869b"
-red = "#fb4934"
-white = "#ebdbb2"
-yellow = "#fabd2f"
-
-[colors.cursor]
-cursor = "#ebdbb2"
-text = "#32302f"
+[colors.primary]
+background = '#fbf1c7'
+foreground = '#3c3836'
 
 [colors.normal]
-black = "#7C6F64"
-blue = "#7e9cd8"
-cyan = "#8ec07c"
-green = "#b8bb26"
-magenta = "#d3869b"
-red = "#fb4934"
-white = "#ebdbb2"
-yellow = "#fabd2f"
+black   = '#fbf1c7'
+red     = '#cc241d'
+green   = '#98971a'
+yellow  = '#d79921'
+blue    = '#458588'
+magenta = '#b16286'
+cyan    = '#689d6a'
+white   = '#7c6f64'
 
-[colors.primary]
-background = "#32302f"
-bright_foreground = "#ebdbb2"
-foreground = "#ebdbb2"
+[colors.bright]
+black   = '#928374'
+red     = '#9d0006'
+green   = '#79740e'
+yellow  = '#b57614'
+blue    = '#076678'
+magenta = '#8f3f71'
+cyan    = '#427b58'
+white   = '#3c3836'
 
 [font]
-#size = 9
-size = 10
+size = 9
+#size = 10
 
 [font.normal]
 family = "DejaVuSansM Nerd Font"
@@ -109,5 +104,3 @@ mods = "Control|Shift"
 [window.padding]
 x = 10
 y = 10
-
-

@@ -13,29 +13,29 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 
-static const char *fonts[]          = { "Bm437 IBM VGA 8x16:pixelsize=16:antialias=false:autohint=true" };
-static const char dmenufont[]       = "Bm437 IBM VGA 8x16:pixelsize=16:antialias=false:autohint=true";
+static const char *fonts[]          = { "DejaVuSansM Nerd Font:size=9", "Bm437 IBM VGA 8x16:pixelsize=16:antialias=false:autohint=true" };
+static const char dmenufont[]       = "DejaVuSansM Nerd Font:size=9";
 
 /* colors */
 static const char col_bg1[]         = "#282828";
-static const char col_bg2[]         = "#32302f";
+static const char col_bg2[]         = "#ebdbb2";
 static const char col_bg3[]         = "#45403d";
 static const char col_bg4[]         = "#504945";
 static const char col_bg5[]         = "#5a524c";
 
-static const char col_fg1[]         = "#ebdbb2";
+static const char col_fg1[]         = "#3C3836";
 static const char col_fg2[]         = "#eee8d5";
 static const char col_fg3[]         = "#fdf6e3";
 
 static const char col_gray1[]       = "#7c6f64";
-static const char col_gray2[]       = "#928374";
-static const char col_gray3[]       = "#a89984";
+static const char col_gray2[]       = "#7C6F64";
+static const char col_gray3[]       = "#928374";
 
 static const char col_purple[]      = "#d3869b";
 static const char col_blue[]        = "#83a598";
 static const char col_aqua[]        = "#8ec07c";
 static const char col_green[]       = "#b8bb26";
-static const char col_yellow[]      = "#fabd2f";
+static const char col_yellow[]      = "#d79921";
 static const char col_orange[]      = "#fe8019";
 static const char col_red[]         = "#fb4934";
 static const char col_dark_red[]    = "#cc241d";
