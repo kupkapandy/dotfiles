@@ -18,12 +18,12 @@ static const char dmenufont[]       = "DejaVuSansM Nerd Font:size=9";
 
 /* colors */
 static const char col_bg1[]         = "#282828";
-static const char col_bg2[]         = "#ebdbb2";
+static const char col_bg2[]         = "#32302f";
 static const char col_bg3[]         = "#45403d";
 static const char col_bg4[]         = "#504945";
 static const char col_bg5[]         = "#5a524c";
 
-static const char col_fg1[]         = "#3C3836";
+static const char col_fg1[]         = "#ebdbb2";
 static const char col_fg2[]         = "#eee8d5";
 static const char col_fg3[]         = "#fdf6e3";
 

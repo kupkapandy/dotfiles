@@ -15,6 +15,6 @@ killall dwm-status.sh
 ./.scripts/dwm-status.sh &
 
 killall feh
-feh --bg-scale ./.scripts/ebdbb2.png
+feh --bg-scale ./.scripts/32302f.jpg
 
 exec dwm

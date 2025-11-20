@@ -86,6 +86,7 @@ return {
 
         },
         overrides = {
+          Normal = {bg = "#32302f"},
           SnippetTabstop = {fg = "#FF0000", bg = "#000000"}
         },
         dim_inactive = false,
@@ -93,7 +94,6 @@ return {
       })
 
       vim.o.termguicolors = true
-      vim.opt.background = 'light'
       vim.cmd("colorscheme gruvbox")
     end,
   },

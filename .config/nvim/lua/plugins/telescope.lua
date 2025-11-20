@@ -29,9 +29,6 @@ return {
             prompt_position = "top",
             preview_width = 0.6,
           },
-          borderchars = {
-            '─', '│', '─', '│', '┌', '┐', '┘', '└'
-          },
           sorting_strategy = "ascending",
           file_ignore_patterns = {
             "%.git/",
