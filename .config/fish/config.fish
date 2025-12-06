@@ -6,8 +6,6 @@ alias vim='nvim'
 alias nano='nvim'
 alias v='nvim'
 alias q='exit'
-alias reboot='sudo reboot'
-alias poweroff='sudo poweroff'
 
 set -x EDITOR nvim
 set -x MANPAGER "nvim +Man!"

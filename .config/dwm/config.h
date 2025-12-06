@@ -26,10 +26,13 @@ static const char col_bg5[]         = "#5a524c";
 static const char col_fg1[]         = "#ebdbb2";
 static const char col_fg2[]         = "#eee8d5";
 static const char col_fg3[]         = "#fdf6e3";
+static const char col_fg4[]			= "#073642";
+static const char col_fg5[]	        = "#657b83";
+
 
 static const char col_gray1[]       = "#7c6f64";
 static const char col_gray2[]       = "#7C6F64";
-static const char col_gray3[]       = "#928374";
+
 
 static const char col_purple[]      = "#d3869b";
 static const char col_blue[]        = "#83a598";
@@ -40,10 +43,12 @@ static const char col_orange[]      = "#fe8019";
 static const char col_red[]         = "#fb4934";
 static const char col_dark_red[]    = "#cc241d";
 
+static const char col_white[]		= "#ffffff";
+
 static const char *colors[][3] = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = {col_gray3, col_bg2, col_bg4},
-	[SchemeSel] = {col_fg1, col_bg2, col_gray2},
+	[SchemeNorm] = {col_fg5, col_white, col_fg5},
+	[SchemeSel] = {col_fg4, col_white, col_fg4},
 };
 
 /* tagging */
@@ -80,7 +85,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg2, "-nf", col_fg1, "-sb", col_yellow, "-sf", col_bg2, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_white,
+									"-nf", col_fg4, "-sb", col_yellow, "-sf", col_white, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
 static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };

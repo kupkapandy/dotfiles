@@ -61,7 +61,7 @@ return {
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
-    enabled = true,
+    enabled = false,
     config = function()
       require("gruvbox").setup({
         terminal_colors = true,
@@ -101,7 +101,7 @@ return {
     "lifepillar/vim-solarized8",
     branch = "neovim",
     priority = 1000,
-    enabled = false,
+    enabled = true,
     config = function()
       vim.o.termguicolors = true
       vim.opt.background = 'light'

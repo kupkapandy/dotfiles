@@ -2,37 +2,36 @@
 draw_bold_text_with_bright_colors = true
 
 [colors.bright]
-black = "#7C6F64"
-blue = "#83a598"
-cyan = "#8ec07c"
-green = "#b8bb26"
-magenta = "#d3869b"
-red = "#fb4934"
-white = "#ebdbb2"
-yellow = "#fabd2f"
+black = "#ffffff"
+blue = "#657b83"
+cyan = "#586e75"
+green = "#93a1a1"
+magenta = "#6c71c4"
+red = "#cb4b16"
+white = "#002b36"
+yellow = "#839496"
 
 [colors.cursor]
-cursor = "#ebdbb2"
-text = "#32302f"
+cursor = "#586e75"
+text = "#ffffff"
 
 [colors.normal]
-black = "#7C6F64"
-blue = "#83a598"
-cyan = "#8ec07c"
-green = "#b8bb26"
-magenta = "#d3869b"
-red = "#fb4934"
-white = "#ebdbb2"
-yellow = "#fabd2f"
+black = "#eee8d5"
+blue = "#268bd2"
+cyan = "#2aa198"
+green = "#859900"
+magenta = "#d33682"
+red = "#dc322f"
+white = "#073642"
+yellow = "#b58900"
 
 [colors.primary]
-background = "#32302f"
-bright_foreground = "#32302f"
-foreground = "#ebdbb2"
+background = "#ffffff"
+bright_foreground = "#073642"
+foreground = "#657b83"
 
 [font]
-size = 9
-#size = 10
+size = 10
 
 [font.normal]
 family = "DejaVuSansM Nerd Font"

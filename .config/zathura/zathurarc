@@ -1,11 +1,11 @@
-set default-bg "#32302f"
-set default-fg "#FFFFFF"
+set default-bg "#ffffff"
+set default-fg "#000000"
 
-set statusbar-bg "#32302f"
-set statusbar-fg "#FFFFFF"
+set statusbar-bg "#ffffff"
+set statusbar-fg "#000000"
 
 set recolor "true"
-set recolor-lightcolor "#32302f"
-set recolor-darkcolor "#FFFFFF"
+set recolor-lightcolor "#ffffff"
+set recolor-darkcolor "#000000"
 set recolor-reverse-video "true"
 set recolor-keephue "true"

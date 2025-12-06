@@ -82,7 +82,7 @@ return{
 
       vim.lsp.config('clangd', {
         cmd = {
-          "/usr/lib/llvm/20/bin/clangd",
+          "/usr/bin/clangd",
           "--background-index",
           "--pch-storage=memory",
           "--all-scopes-completion",
@@ -115,7 +115,7 @@ return{
 
       vim.lsp.enable({
         'clangd',
-        'texlab,'
+        'texlab',
       })
 
     end,

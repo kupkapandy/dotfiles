@@ -3,8 +3,8 @@
   "logo": {
     "type": "small",
     "color": {
-      "1": "magenta",
-      "2": "magenta"
+      "1": "blue",
+      "2": "blue"
     },
     "padding": {
       "top": 1,
@@ -15,7 +15,7 @@
   "display": {
     "separator": "~   ",
     "color": {
-      "separator": "magenta"
+      "separator": "blue"
     }
   },
 
@@ -25,39 +25,39 @@
     {
       "key" : "Distro   ",
       "type": "os",
-      "keyColor": "magenta",
+      "keyColor": "blue",
       "format": "{3}"
     },
     {
       "key" : "Kernel   ",
       "type": "kernel",
-      "keyColor": "magenta"
+      "keyColor": "blue"
     },
     {
       "key" : "WM       ",
       "type": "wm",
-      "keyColor": "magenta",
+      "keyColor": "blue",
       "format": "{2} ({3})"
     },
     {
       "key" : "Shell    ",
       "type": "shell",
-      "keyColor": "magenta",
+      "keyColor": "blue",
       "format": "{1} {4}"
     },
     {
       "key" : "Disk     ",
       "type": "disk",
-      "keyColor": "magenta",
+      "keyColor": "blue",
       "format": "{1} / {2}"
     },
     {
       "key" : "Memory   ",
       "type": "memory",
-      "keyColor": "magenta",
+      "keyColor": "blue",
       "format": "{1} / {2}"
     },
     "break",
-    "break"
+    "break",
   ]
 }
