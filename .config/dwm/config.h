@@ -22,6 +22,7 @@ static const char col_bg2[]         = "#32302f";
 static const char col_bg3[]         = "#45403d";
 static const char col_bg4[]         = "#504945";
 static const char col_bg5[]         = "#5a524c";
+static const char col_bg6[]         = "#1d2021";
 
 static const char col_fg1[]         = "#ebdbb2";
 static const char col_fg2[]         = "#eee8d5";
@@ -47,8 +48,8 @@ static const char col_white[]		= "#ffffff";
 
 static const char *colors[][3] = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = {col_fg5, col_white, col_fg5},
-	[SchemeSel] = {col_fg4, col_white, col_fg4},
+	[SchemeNorm] = {col_bg4, col_bg6, col_bg1},
+	[SchemeSel] = {col_fg1, col_bg6, col_bg3},
 };
 
 /* tagging */
@@ -85,8 +86,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_white,
-									"-nf", col_fg4, "-sb", col_yellow, "-sf", col_white, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg6,
+									"-nf", col_fg1, "-sb", col_yellow, "-sf", col_bg6, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *up_vol[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",   NULL };
 static const char *down_vol[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",   NULL };

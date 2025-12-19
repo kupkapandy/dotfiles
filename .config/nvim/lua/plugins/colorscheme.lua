@@ -61,7 +61,7 @@ return {
   {
     "ellisonleao/gruvbox.nvim",
     priority = 1000,
-    enabled = false,
+    enabled = true,
     config = function()
       require("gruvbox").setup({
         terminal_colors = true,
@@ -81,12 +81,11 @@ return {
         invert_tabline = false,
         invert_intend_guides = false,
         inverse = true, -- invert background for search, diffs, statuslines and errors
-        contrast = "", -- can be "hard", "soft" or empty string
+        contrast = "hard", -- can be "hard", "soft" or empty string
         palette_overrides = {
 
         },
         overrides = {
-          Normal = {bg = "#32302f"},
           SnippetTabstop = {fg = "#FF0000", bg = "#000000"}
         },
         dim_inactive = false,
@@ -94,6 +93,7 @@ return {
       })
 
       vim.o.termguicolors = true
+      vim.opt.background = 'dark'
       vim.cmd("colorscheme gruvbox")
     end,
   },
@@ -101,7 +101,7 @@ return {
     "lifepillar/vim-solarized8",
     branch = "neovim",
     priority = 1000,
-    enabled = true,
+    enabled = false,
     config = function()
       vim.o.termguicolors = true
       vim.opt.background = 'light'
