@@ -1,0 +1,152 @@
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment():
+	return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
+	return x != '0' and y != '0'
+
+endglobal
+
+snippet beg "begin{} / end{}" bA
+\\begin{$1}
+	$0
+\\end{$1}
+endsnippet
+
+snippet mk "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`$2
+endsnippet
+
+snippet dm "Math" wA
+\[
+	${1:${VISUAL}}
+\] $0
+endsnippet
+
+snippet def "definition environment" bA
+\\begin{definition}
+	$0
+\\end{definition}
+endsnippet
+
+snippet theor "theorem environment" bA
+\\begin{theorem}
+	$0
+\\end{theorem}
+endsnippet
+
+snippet pro "proof environment" bA
+\\begin{proof}
+	$0
+\\end{proof}
+endsnippet
+
+snippet eg "example environment" bA
+\\begin{example}
+	$0
+\\end{example}
+endsnippet
+
+snippet ali "align environment" bA
+\\begin{align*}
+	${0:${VISUAL}}
+\\end{align*}
+endsnippet
+
+context "math()"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet div "Divides" iA
+\mid
+endsnippet
+
+context "math()"
+snippet ndiv "Does Not divides" iA
+\nmid
+endsnippet
+
+snippet sum "sum" w
+\sum_{${1:i = 0}}^{${2:\infty}}{${3:a_i}}
+endsnippet
+
+snippet sq "sqrt" iA
+\sqrt{${1:${VISUAL}}} $0
+endsnippet
+
+context "math()"
+snippet td "to the ... power" iA
+^{$1}$0
+endsnippet
+
+context "math()"
+snippet rd "to the ... power" iA
+^{($1)}$0
+endsnippet
+
+snippet == "equals" iA
+&= ${1:${VISUAL}} \\\\
+endsnippet
+
+snippet <= "leq" iA
+\leq
+endsnippet
+
+snippet >= "geq" iA
+\geq
+endsnippet
+
+priority 100
+context "math()"
+snippet -> "to" iA
+\to
+endsnippet
+
+priority 200
+context "math()"
+snippet <-> "leftrightarrow" iA
+\leftrightarrow
+endsnippet
+
+snippet OO "emptyset" iA
+\O
+endsnippet
+
+snippet RR "R" iA
+\R
+endsnippet
+
+snippet QQ "Q" iA
+\Q
+endsnippet
+
+snippet ZZ "Z" iA
+\Z
+endsnippet
+
+snippet NN "N" iA
+\N
+endsnippet
+
+
+context "math()"
+snippet () "left( right)" i
+\left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+snippet lr "left( right)" i
+\left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+# vim:ft=snippets
