@@ -1,0 +1,63 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "small",
+    "color": {
+      "1": "blue",
+      "2": "blue"
+    },
+    "padding": {
+      "top": 1,
+      "left": 4,
+      "right": 4
+    }
+  },
+  "display": {
+    "separator": "~   ",
+    "color": {
+      "separator": "blue"
+    }
+  },
+
+  "modules": [
+    "break",
+    "break",
+    {
+      "key" : "Distro   ",
+      "type": "os",
+      "keyColor": "blue",
+      "format": "{3}"
+    },
+    {
+      "key" : "Kernel   ",
+      "type": "kernel",
+      "keyColor": "blue"
+    },
+    {
+      "key" : "WM       ",
+      "type": "wm",
+      "keyColor": "blue",
+      "format": "{2} ({3})"
+    },
+    {
+      "key" : "Shell    ",
+      "type": "shell",
+      "keyColor": "blue",
+      "format": "{1} {4}"
+    },
+    {
+      "key" : "Disk     ",
+      "type": "disk",
+      "keyColor": "blue",
+      "format": "{1} / {2}"
+    },
+    {
+      "key" : "Memory   ",
+      "type": "memory",
+      "keyColor": "blue",
+      "format": "{1} / {2}"
+    },
+    "break",
+    "break",
+  ]
+}

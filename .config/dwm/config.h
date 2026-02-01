@@ -22,9 +22,9 @@ static const char col_bg2[]         = "#32302f";
 static const char col_bg3[]         = "#45403d";
 static const char col_bg4[]         = "#504945";
 static const char col_bg5[]         = "#5a524c";
-static const char col_bg6[]         = "#000000";
+static const char col_bg6[]         = "#1d2021";
 
-static const char col_fg1[]         = "#DDDDDD";
+static const char col_fg1[]         = "#ebdbb2";
 static const char col_fg2[]         = "#eee8d5";
 static const char col_fg3[]         = "#fdf6e3";
 static const char col_fg4[]			= "#073642";
