@@ -1,0 +1,59 @@
+#navigator-toolbox {
+  border: none !important;
+}
+
+
+#nav-bar {
+  background-color: #32302f;
+  color: #ebdbb2;
+  border: none !important;
+}
+
+#nav-bar-customization-target,
+#preferences-button,
+slot {
+  background-color: #32302f;
+  color: #ebdbb2;
+}
+
+
+.urlbarView-row[selected="true"],
+.urlbarView-row[selected] {
+  background-color: #504945 !important;
+  color: #ebdbb2;
+}
+
+.urlbar-input-container,
+#contentAreaContextMenu,
+.urlbarView-body-inner {
+  background-color: #3c3836 !important;
+  color: #ebdbb2;
+}
+
+
+#PlacesToolbarItems,
+#PersonalToolbar,
+#PanelUI-menu-button {
+	background-color: #32302f !important;
+	color: #ebdbb2;
+}
+
+menupopup,
+panel,
+menupopup[type="arrow"],
+panel[type="arrow"] {
+  --panel-border-color: #3C3836 !important;
+}
+
+menupopup, panel {
+  --panel-background: #32302f !important;
+}
+
+.urlbar-background {
+  background-color: #3c3836 !important;
+  border: 0px solid #3c3836 !important;
+}
+
+.tab-text.tab-label {
+  color: #ebdbb2 !important;
+}
