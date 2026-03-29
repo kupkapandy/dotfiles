@@ -17,12 +17,12 @@ killall dwm-status.sh
 killall feh
 feh --bg-scale ./.scripts/32302f.jpg
 
-xsetwacom set "UGTABLET 10 inch PenTablet stylus" Rotate half
-xsetwacom set "UGTABLET 10 inch PenTablet stylus" MapToOutput 2560x1440+1920+0
-xsetwacom set "UGTABLET 10 inch PenTablet stylus" PressureCurve 0 20 50 100
-
 xinput set-prop 13 "libinput Accel Profile Enabled" 0 1 0
 xinput set-prop 14 "libinput Accel Profile Enabled" 0 1 0
 xinput set-prop 15 "libinput Accel Profile Enabled" 0 1 0
+
+xsetwacom set "UGTABLET 10 inch PenTablet stylus" Rotate half
+xsetwacom set "UGTABLET 10 inch PenTablet stylus" MapToOutput 2560x1440+1920+0
+xsetwacom set "UGTABLET 10 inch PenTablet stylus" PressureCurve 0 20 50 100
 
 exec dwm
