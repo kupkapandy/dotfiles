@@ -24,7 +24,6 @@ slot {
 }
 
 .urlbar-input-container,
-#contentAreaContextMenu,
 .urlbarView-body-inner {
   background-color: #3c3836 !important;
   color: #ebdbb2;
@@ -45,6 +44,7 @@ panel[type="arrow"] {
   --panel-border-color: #3C3836 !important;
 }
 
+#contentAreaContextMenu,
 menupopup, panel {
   --panel-background: #32302f !important;
 }

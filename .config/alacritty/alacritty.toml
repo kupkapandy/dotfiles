@@ -13,7 +13,7 @@ yellow = "#fabd2f"
 
 [colors.cursor]
 cursor = "#ebdbb2"
-text = "#32302f"
+text = "#000000"
 
 [colors.normal]
 black = "#7C6F64"
@@ -26,7 +26,7 @@ white = "#ebdbb2"
 yellow = "#fabd2f"
 
 [colors.primary]
-background = "#32302f"
+background = "#000000"
 bright_foreground = "#ebdbb2"
 foreground = "#ebdbb2"
 
@@ -35,7 +35,7 @@ foreground = "#ebdbb2"
 size = 11
 
 [font.normal]
-family = "DejaVuSansM Nerd Font"
+family = "Terminus"
 
 [[keyboard.bindings]]
 action = "Paste"

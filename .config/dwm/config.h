@@ -18,11 +18,11 @@ static const char dmenufont[]       = "Terminus:pixelsize=16:antialias=false:aut
 
 /* colors */
 static const char col_bg1[]         = "#3b3836";
-static const char col_bg2[]         = "#32302f";
+static const char col_bg2[]         = "#000000";
 static const char col_bg3[]         = "#45403d";
 static const char col_bg4[]         = "#A89984";
 static const char col_bg5[]         = "#5a524c";
-static const char col_bg6[]         = "#32302f";
+static const char col_bg6[]         = "#000000";
 
 static const char col_fg1[]         = "#ebddb2";
 static const char col_fg2[]         = "#eee8d5";

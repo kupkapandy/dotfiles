@@ -2,7 +2,7 @@
 
 unset XCURSOR_THEME
 
-xrandr --output DP-0 --mode 2560x1440 --rate 100 --primary --output $(xrandr --query | awk '/^HDMI-[0-9]-[0-9]+ connected/{print $1; exit}') --mode 1920x1080 --rate 75 --left-of $(xrandr --query | awk '/^DP-[0-9]+ connected/{print $1; exit}')
+xrandr --output DP-0 --mode 2560x1440 --rate 100 --primary --output $(xrandr --query | awk '/^HDMI[0-9]+ connected/{print $1; exit}') --mode 1920x1080 --rate 75 --left-of $(xrandr --query | awk '/^DP-[0-9]+ connected/{print $1; exit}')
 
 xset s off
 xset -dpms
@@ -15,14 +15,17 @@ killall dwm-status.sh
 ./.scripts/dwm-status.sh &
 
 killall feh
-feh --bg-scale ./.scripts/32302f.jpg
+feh --bg-scale ./.scripts/000000.jpg
+
+killall picom
+picom &
 
 xinput set-prop 13 "libinput Accel Profile Enabled" 0 1 0
 xinput set-prop 14 "libinput Accel Profile Enabled" 0 1 0
 xinput set-prop 15 "libinput Accel Profile Enabled" 0 1 0
 
-xsetwacom set "UGTABLET 10 inch PenTablet stylus" Rotate half
-xsetwacom set "UGTABLET 10 inch PenTablet stylus" MapToOutput 2560x1440+1920+0
-xsetwacom set "UGTABLET 10 inch PenTablet stylus" PressureCurve 0 20 50 100
+#xsetwacom set "UGTABLET 10 inch PenTablet stylus" Rotate half
+#xsetwacom set "UGTABLET 10 inch PenTablet stylus" MapToOutput 2560x1440+1920+0
+#xsetwacom set "UGTABLET 10 inch PenTablet stylus" PressureCurve 0 20 50 100
 
-exec dwm
+exec dbus-launch --exit-with-session dwm

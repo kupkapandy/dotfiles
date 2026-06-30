@@ -86,7 +86,12 @@ return {
 
         },
         overrides = {
-          SnippetTabstop = {fg = "#FF0000", bg = "#000000"}
+          SnippetTabstop = {fg = "#FF0000", bg = "#000000"},
+		  Normal = { bg = "#000000" },
+		  NormalNC = { bg = "#000000" },
+		  NormalFloat = { bg = "#000000" },
+		  FloatBorder = { bg = "#000000" },
+		  TelescopeNormal = { bg = "#000000" },
         },
         dim_inactive = false,
         transparent_mode = false,
